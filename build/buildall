@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#
+# Copyright (c) 2009-2018 Brandon Haworth, Glen Berseth, Muhammad Usman, Mubbasir Kapadia, Shawn Singh, Petros Faloutsos, Glenn Reinman
+# See license.txt for complete license.
+#
+
+# macro call to another more specific script
+
+# Usage
+# ./buildall <os_type> [Debug|Release]
+# Debug is optional
+
+if [ -z $2 ] # empty string
+then
+	Build_Type="Release"
+else
+	Build_Type="$2"
+fi
+
+if [ $1=="macosx" ]
+then
+	premake4 gmake
+else
+	./premake4 gmake
+fi
+
+pushd gmake/  > /dev/null
+	if [ $Build_Type == "Release" ] # empty string
+	then
+		make config=release64
+	else
+		make config=debug64
+	fi
+popd > /dev/null

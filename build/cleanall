@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#
+# Copyright (c) 2009-2018 Brandon Haworth, Glen Berseth, Muhammad Usman, Mubbasir Kapadia, Shawn Singh, Petros Faloutsos, Glenn Reinman
+# See license.txt for complete license.
+#
+
+
+# ./clean.sh all
+
+pushd gmake/  > /dev/null
+	
+		make config=release64 clean
+		make config=debug64 clean
+	
+popd > /dev/null
+
